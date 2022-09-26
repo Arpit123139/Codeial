@@ -1,4 +1,5 @@
 const express=require('express')
+const db =require('./config/mongoose') 
 const app=express();
 const port=8000
 
@@ -8,6 +9,7 @@ app.use('/',require("./routes"))          // by doing this we are telling the ap
 /*****************Telling that we have to use ejs as View Engine */
 app.set('view engine','ejs')
 app.set('views','./views')
+
 app.listen(port,function(err){
     if(err){
         //Below both the statement are same 
