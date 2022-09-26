@@ -2,6 +2,8 @@ const express=require('express')
 const app=express();
 const port=8000
 
+/***********************use express router*************/
+app.use('/',require("./routes"))          // by doing this we are telling the app that all .get .post will be handle by this folder 
 
 app.listen(port,function(err){
     if(err){
