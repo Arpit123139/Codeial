@@ -22,3 +22,10 @@ module.exports.signIn=function(req,res){
         title:"Codeial | SignIn"
     })
 }
+
+//get the signup daat
+
+module.exports.create=function(req,res){
+    
+    //TODO later
+}
