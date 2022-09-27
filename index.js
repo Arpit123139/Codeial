@@ -1,7 +1,15 @@
 const express=require('express')
+const cookieParser=require('cookie-parser')
 const db =require('./config/mongoose') 
 const app=express();
 const port=8000
+
+
+
+/******************Reading through the post request** */
+app.use(express.urlencoded())
+/*******************Cookie-Parser******** */
+app.use(cookieParser())
 
 /***********************use express router*************/
 app.use('/',require("./routes"))          // by doing this we are telling the app that all .get .post will be handle by this folder 
