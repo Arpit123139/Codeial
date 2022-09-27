@@ -1,12 +1,25 @@
 const User = require('../models/users')   // Created a Schema
 
+// Showing the profile page with the user details and it will take to the profile page only after sign in 
 module.exports.profile = function (req, res) {
 
-    return res.render('user_profile', {
-        title: 'User Profile'
+    if (req.cookies.user_id) {
 
+        User.findById(req.cookies.user_id, function (err, user) {
 
-    })
+            if (user) {
+                return res.render('user_profile', {
+                    title: 'User Profile',
+                    user: user
+                })
+            }
+
+            return res.redirect('/users/sign-in')
+
+        })
+    } else {
+        return res.redirect('/users/sign-in')
+    }
 }
 
 // Render the SignUpPage
