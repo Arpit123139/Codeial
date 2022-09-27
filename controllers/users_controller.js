@@ -25,36 +25,16 @@ module.exports.profile = function (req, res) {
 // Render the SignUpPage
 module.exports.signUp = function (req, res) {
 
-<<<<<<< HEAD
-    if(req.isAuthenticated()){
-
-        return res.redirect('/users/profile')
-    }
-    return res.render('user_sign_up',{
-        title:"Codeial | SignUp"
-=======
     return res.render('user_sign_up', {
         title: "Codeial | SignUp"
->>>>>>> 7e0b14764544c3fd797cacb2c08e5b9b4cbda205
     })
 }
 
 // Render the signIn page
 module.exports.signIn = function (req, res) {
 
-<<<<<<< HEAD
-
-    if(req.isAuthenticated()){
-
-        return res.redirect('/users/profile')
-    }
-
-    return res.render('user_sign_in',{
-        title:"Codeial | SignIn"
-=======
     return res.render('user_sign_in', {
         title: "Codeial | SignIn"
->>>>>>> 7e0b14764544c3fd797cacb2c08e5b9b4cbda205
     })
 }
 
@@ -95,15 +75,10 @@ module.exports.create = function (req, res) {
 
 }
 
-<<<<<<< HEAD
-//signIn and create a session for the user Action when signIn button is clicked
-module.exports.createSession=function(req,res){
-
-    return res.redirect('/')
-=======
 //Handling the even when the sign-in button is clicked 
 module.exports.createSession = function (req, res) {
 
+   
     // find the user
     User.findOne({ email: req.body.email }, function (err, user) {
 
@@ -159,5 +134,4 @@ module.exports.signOut=function(req,res){
     return res.redirect('/users/sign-in')
 
    })
->>>>>>> 7e0b14764544c3fd797cacb2c08e5b9b4cbda205
 }
