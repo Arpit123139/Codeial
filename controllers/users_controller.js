@@ -118,3 +118,19 @@ module.exports.createSession = function (req, res) {
 
 
 }
+//Handling the even when the sign-out button is clicked in /users/profile page
+module.exports.signOut=function(req,res){
+
+   User.findByIdAndDelete(req.cookies.user_id,function(err,user){
+
+    if(err){
+        console.log("There is an error in deleting the user ")
+        return
+    }
+    console.log(user)
+    res.cookie('user_id', 25)
+
+    return res.redirect('/users/sign-in')
+
+   })
+}
