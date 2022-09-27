@@ -7,6 +7,8 @@ router.get("/profile",usersController.profile) //this works when the url is /use
 
 router.get("/sign-up",usersController.signUp)
 router.get("/sign-in",usersController.signIn)
-
+router.post('/create',usersController.create)
+router.post('/create-session',usersController.createSession)
+router.post('/sign-out',usersController.signOut)
 
 module.exports=router
