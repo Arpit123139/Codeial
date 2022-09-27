@@ -12,6 +12,10 @@ module.exports.profile=function(req,res){
 // Render the SignUpPage
 module.exports.signUp=function(req,res){
 
+    if(req.isAuthenticated()){
+
+        return res.redirect('/users/profile')
+    }
     return res.render('user_sign_up',{
         title:"Codeial | SignUp"
     })
@@ -19,6 +23,12 @@ module.exports.signUp=function(req,res){
 
 // Render the signIn page
 module.exports.signIn=function(req,res){
+
+
+    if(req.isAuthenticated()){
+
+        return res.redirect('/users/profile')
+    }
 
     return res.render('user_sign_in',{
         title:"Codeial | SignIn"
