@@ -64,12 +64,15 @@ passport.checkAuthentication = function (req, res, next) {
     return res.redirect('/users/sign-in')
 }
 
+// this function is use as a middleware whenever any request is made this comes into play
 passport.setAuthenticatedUser = function (req, res, next) {
     if (req.isAuthenticated()) {
 
-        //req.user contains the current signed in user from the session Cookie and we are just sending this to the locals for thr views
+        //req.user contains the current signed in user from the session Cookie and we are just sending this to the locals for the views
+
+        //response is comming from the server and request is sent from the browser to the server
         res.locals.user = req.user
-        //  console.log(req)
+        //  console.log(req.body)
         // console.log(req.user)
 
     }

@@ -41,6 +41,7 @@ app.use(session({
 app.use(passport.initialize())
 app.use(passport.session())
 
+//pass the user data to the locals so that it can be access by the views
 app.use(passport.setAuthenticatedUser)
 /***********************use express router*************/
 app.use('/',require("./routes"))          // by doing this we are telling the app that all .get .post will be handle by this folder 
