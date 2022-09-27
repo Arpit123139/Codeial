@@ -1,0 +1,55 @@
+const passport = require('passport')
+const User = require('../models/users')
+
+const LocalStartegy = require('passport-local').Strategy
+
+//need to tell the passport library to use the localtartegy
+/************************This part is finding the user and authenticating them */
+passport.use(new LocalStartegy({
+        usernameField: 'email',      // From Schema
+    },
+    function(email,password,done){
+        //find a user and establish the identity
+        User.findOne({email:email},function(err,user){      // The firsm email of email:email is from schema  
+
+            if(err){
+                console.log("Error in finding user--> Passport")
+                return done(err)
+            }
+            if(!user || user.password!=password){
+
+                console.log("Invalid Username/Password")
+                return done(null,false)    // there is no error so null and false as authentication is not done this is a inbuilt function that automatically handle all the things
+
+            }
+
+            return done(null,user)    //this will return the user to the serializer
+
+        })
+
+
+    }
+))
+
+ //Serializing the user to decide which key is to be kept in the cookie storing the id as the value of the cookie user_id in manual auth
+/******************After the user is authenticated then we have to serialize the user it means which key is to be passed to the cookie  */
+ passport.serializeUser(function(user,done){
+    done(null,user.id);   //automatically encrypt it in the cookie
+ })
+
+ //deserializing the user from the key in the cookies when the browser send back the user_id which is a cookie created in a browser
+ /*******************When the next request comes in we need to deserialize to find which user is making the request */
+ //It stores the user id in the session cookie which is encrypted using middleware
+ passport.deserializeUser(function(id,done){
+
+    User.findById(id,function(err,user){
+        if(err){
+            console.log("Error in finding user--> Passport")
+                return done(err)
+        }
+
+        return done(null,user)
+    })
+ })
+
+ module.exports=passport 

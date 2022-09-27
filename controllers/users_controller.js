@@ -62,7 +62,8 @@ module.exports.create=function(req,res){
 
 }
 
-//signIn and create a session for the user
+//signIn and create a session for the user Action when signIn button is clicked
 module.exports.createSession=function(req,res){
 
+    return res.redirect('/')
 }
