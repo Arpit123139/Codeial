@@ -31,8 +31,8 @@ app.use(session({
     //TODO change the secret before deployment
     //whenever encryption happen there is a key to encode and decode it so to decode it we define the key
     secret:'blahsomething',
-    saveUninitialized:false,
-    resave:false,
+    saveUninitialized:false,    // when the identity is not established or the user has not sign_In then we dont need extra data in the session cookie
+    resave:false,               // if it data is already there in the session cokoie then we dont need to save again and again
     cookie:{
         maxAge:(1000*60*100)      // calculated in millisecond
     }
@@ -41,7 +41,7 @@ app.use(session({
 app.use(passport.initialize())
 app.use(passport.session())
 
-
+app.use(passport.setAuthenticatedUser)
 /***********************use express router*************/
 app.use('/',require("./routes"))          // by doing this we are telling the app that all .get .post will be handle by this folder 
 
