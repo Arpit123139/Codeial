@@ -1,6 +1,7 @@
-body{
-   margin: 0;
-   padding: 0;
-   text-align: center;
-   background-color: aqua;
-}
+body {
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  background-color: wheat; }
+  body main {
+    height: 652px; }

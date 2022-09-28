@@ -1,0 +1,10 @@
+footer {
+  background-color: gray;
+  display: flex; }
+  footer div p {
+    color: white; }
+  footer ul {
+    list-style-type: none; }
+    footer ul a {
+      color: white;
+      text-decoration-line: none; }

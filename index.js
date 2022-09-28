@@ -14,6 +14,18 @@ const { options } = require('./routes');
 const MongoStore = require('connect-mongo');
  // seesion is the express-session declared at line 8 
 
+ //SAAS Middleware Its use is to convert the SAAS into normal css when the server starts 
+ const saasMiddleware=require('node-sass-middleware')
+
+ // below the server start becuase we need a precompile version to css
+ app.use(saasMiddleware({
+    src:'./assets/scss',
+    dest:'./assets/css',
+    debug:true,       // need to display the error
+    outputStyle:'extended',   // whether we rewuire in multiple line or single line
+    prefix:'/css'                   // where should the server look out for css file
+
+ }))
 
 
 

@@ -1,0 +1,38 @@
+header {
+    display: flex;
+    justify-content: space-between;
+    background-color: dodgerblue;
+    color: white;
+
+    div{
+        p{
+            font-weight: 800;
+            font-size: 28px;
+            margin-left: 5px;
+            margin-top: 8px;
+            margin-bottom: 0;
+        }
+    }
+
+    ul{
+        display: flex;
+        list-style-type: none;
+        
+
+        #name{
+            margin-right: 10px;
+
+        }
+        #signIn{
+            margin-right: 10px;
+
+        }
+
+        a{
+            text-decoration-line: none;
+            color: white;
+        }
+        
+
+    }
+}

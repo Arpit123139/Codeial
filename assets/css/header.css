@@ -1,0 +1,21 @@
+header {
+  display: flex;
+  justify-content: space-between;
+  background-color: dodgerblue;
+  color: white; }
+  header div p {
+    font-weight: 800;
+    font-size: 28px;
+    margin-left: 5px;
+    margin-top: 8px;
+    margin-bottom: 0; }
+  header ul {
+    display: flex;
+    list-style-type: none; }
+    header ul #name {
+      margin-right: 10px; }
+    header ul #signIn {
+      margin-right: 10px; }
+    header ul a {
+      text-decoration-line: none;
+      color: white; }
