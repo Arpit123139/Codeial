@@ -10,8 +10,6 @@ router.get("/profile",passport.checkAuthentication,usersController.profile) //th
 router.get("/sign-up",usersController.signUp)
 router.get("/sign-in",usersController.signIn)
 router.post('/create',usersController.create)
-//router.post('/create-session',usersController.createSession)
-
 
 //use passport as a middleware to authenticate
 router.post('/create-session',passport.authenticate(
@@ -19,5 +17,6 @@ router.post('/create-session',passport.authenticate(
     {failureRedirect:'/users/sign-in'}       // passport.authenticate is the inbuilt 
 ),usersController.createSession)             // if password.authenticate is successfull
 
+router.get("/sign-out",usersController.destroySession)
 
 module.exports=router

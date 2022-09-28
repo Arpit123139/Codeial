@@ -8,7 +8,33 @@
     </head>
 
     <body>
-        <headers>Page Header</headers>
+        <header>
+            Page Header
+            
+            <ul>
+                <% if(locals.user){ %>
+
+                    <li>
+                        <a href="/users/profile"><%= user.name %></a>
+                    </li>
+                    
+                    <li>
+                        <a href="/users/sign-out">Sign Out</a>
+                    </li>
+
+                <% }else{%>
+                    <li>
+                        <a href="/users/sign-in">Sign In</a>
+                    </li>
+                    <li>
+                        <a href="/users/sign-up">Sign Up</a>
+                    </li>
+
+                <% }%>
+            </ul>
+        
+        
+        </header>
         <h1>Codeal /<%=title%></h1>
         <footer>Page Footer</footer>
      </body>
