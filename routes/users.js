@@ -10,8 +10,8 @@ router.get("/profile",passport.checkAuthentication,usersController.profile) //th
 router.get("/sign-up",usersController.signUp)
 router.get("/sign-in",usersController.signIn)
 router.post('/create',usersController.create)
-router.post('/create-session',usersController.createSession)
-router.post('/sign-out',usersController.signOut)
+//router.post('/create-session',usersController.createSession)
+
 
 //use passport as a middleware to authenticate
 router.post('/create-session',passport.authenticate(
