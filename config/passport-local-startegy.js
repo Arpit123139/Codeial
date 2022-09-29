@@ -74,6 +74,7 @@ passport.setAuthenticatedUser = function (req, res, next) {
         res.locals.user = req.user
         //  console.log(req.body)
          console.log(req.user)
+         console.log(res)
 
     }
     next()
