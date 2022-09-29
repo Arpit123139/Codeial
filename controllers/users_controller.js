@@ -80,3 +80,20 @@ module.exports.destroySession = function (req, res) {
     });
     res.redirect('/')
 }
+
+module.exports.update=function(req,res){
+    console.log("######################################")
+    //this is an authentication check so the user can update his own profile only
+    if(req.user.id==req.params.id)
+    {
+        console.log("######################################")
+        User.findByIdAndUpdate(req.params.id,{
+            name:req.body.name,
+            email:req.body.email
+        },function(err,user){
+            return res.redirect('back')
+        })
+    }else{
+        return res.status(401).send('Unauthorized')
+    }
+}
