@@ -11,9 +11,19 @@ module.exports.home=function(req,res){
 
      res.cookie('user_id',25)
 
-     Post.find({},function(err,posts){
+    //  Post.find({},function(err,posts){
 
         
+
+    //     return res.render('home',{
+
+    //         title:"Home",
+    //         post:posts
+    //     })
+    //  })
+
+    // populating the reffersed user of each post which give the complete user not just the id 
+     Post.find({}).populate('user').exec(function(err,posts){
 
         return res.render('home',{
 

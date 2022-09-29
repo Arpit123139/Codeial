@@ -17,7 +17,8 @@
     <%- include('header');%>
 
         <main id="main">
-            <h1>Codeal /<%=title%></h1>
+            <h1>Codeal /<%=title%>
+            </h1>
 
             <section id="feed-post">
                 <h4>Post</h4>
@@ -30,17 +31,22 @@
                     <ul>
                         <%for (let i of post ){%>
                             <li id="post">
-                                <p id="post-content"><%=i.content%></p>
-                                
+                                <p>
+                                    <%=i.content%>
+                                        <br>
+                                        <small>
+                                            <%=i.user.name%>
+                                        </small>
+                                </p>
                             </li>
-                            
-                        <%}%>
+
+                            <%}%>
                     </ul>
                 </div>
             </section>
-            
+
         </main>
-    <%- include('footer');%>
+        <%- include('footer');%>
 
 </body>
 
