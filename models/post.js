@@ -10,7 +10,17 @@ const postSchema =new mongoose.Schema({
     user:{           // linking the post to the User
         type:mongoose.Schema.Types.ObjectId ,     // reffering to the objectId in Robo3T
         ref:'User'            //we have exported it in users.js
-    }
+    },
+    //include the array of Id of all comments  this is done to get all the comments associated with the post directly
+    comment:[
+        {
+            type:mongoose.Schema.Types.ObjectId,
+            ref:'Comment'
+
+        }
+        
+        
+    ]
 },{
     timestamps:true
 })
