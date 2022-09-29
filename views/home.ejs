@@ -29,7 +29,7 @@
                         <TEXTArea name="content" cols="30" rows="3" placeholder="Type Here..."></TEXTArea>
                         <input type="submit" value="Post">
                     </form>
-                <%}%>
+                    <%}%>
 
                         <div id="post-list-container">
                             <ul>
@@ -37,42 +37,55 @@
                                     <li id="post">
                                         <p>
                                             <!--Use the .id instead of ._id in locals.user.id to convert it into String -->
-                                            <% if((locals.user) && (locals.user.id==i.user.id)){%>     <!--This is a check to ensure delte button is available when the user is sign in and only to that post which the user has created-->
+                                            <% if((locals.user) && (locals.user.id==i.user.id)){%>
+                                                <!--This is a check to ensure delte button is available when the user is sign in and only to that post which the user has created-->
                                                 <small>
                                                     <a href="/posts/destroy/<%=i._id%>">X</a>
                                                 </small>
-                                            <%}%>
-                                            <%=i.content%>
-                                                <br>
-                                                <small>
-                                                    <%=i.user.name%>
-                                                </small>
+                                                <%}%>
+                                                    <%=i.content%>
+                                                        <br>
+                                                        <small>
+                                                            <%=i.user.name%>
+                                                        </small>
                                         </p>
                                         <div class="post-comments">
                                             <% if(locals.user){%>
 
                                                 <form action="/comments/create" method="Post">
-                                                    <input type="text" name="content" placeholder="Type Here to add comment">
-                                                    <input type="hidden" name="post" value="<%= i._id %>"> <!--we are passing the id of the post because we needed it in the controller and unlike user req.use._id we cannnot do directly for the post -->
+                                                    <input type="text" name="content"
+                                                        placeholder="Type Here to add comment">
+                                                    <input type="hidden" name="post" value="<%= i._id %>">
+                                                    <!--we are passing the id of the post because we needed it in the controller and unlike user req.use._id we cannnot do directly for the post -->
                                                     <input type="submit" value="Add Comment">
                                                 </form>
-                                            
-                                            <%}%>
 
-                                            <div class="post-comments-list">
-                                                <ul id="post-comments-<%=i._id%>">
-                                                    <%for(comment of i.comments){%>
-                                                        <%=comment.content%>
-                                                        <br>
-                                                         <small>
-                                                            <%=comment.user.name%>
-                                                        </small>
-                                                        <br>
-                                                        <br>
-                                                       
-                                                    <%}%>
-                                                </ul>
-                                            </div>
+                                                <%}%>
+
+                                                    <div class="post-comments-list">
+                                                        <ul id="post-comments-<%=i._id%>">
+                                                            <%for(comment of i.comments){%>
+                                                                <p>
+                                                                    <!--Use the .id instead of ._id in locals.user.id to convert it into String -->
+                                                                    <% if((locals.user) && (locals.user.id==comment.user.id)){%>
+                                                                        <!--This is a check to ensure delte button is available when the user is sign in and only to that post which the user has created-->
+                                                                        <small>
+                                                                            <a href="/comments/destroy/<%=comment._id%>">X</a>
+                                                                        </small>
+                                                                    <%}%>
+
+                                                                    <%=comment.content%>
+                                                                    <br>
+                                                                        <small>
+                                                                         <%=comment.user.name%>
+                                                                        </small>
+                                                                    <br>
+                                                                    <br>
+                                                                </p>
+
+                                                            <%}%>
+                                                        </ul>
+                                                    </div>
                                         </div>
 
                                     </li>
