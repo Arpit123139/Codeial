@@ -1,3 +1,7 @@
+
+const Post=require('../models/post')
+const User=require('../models/users')
+
 module.exports.home=function(req,res){
     //return res.end('<h1>Express is up for codeial</h1>')
 
@@ -7,10 +11,17 @@ module.exports.home=function(req,res){
 
      res.cookie('user_id',25)
 
-    return res.render('home',{
+     Post.find({},function(err,posts){
 
-        title:"Home"
-    })
+        
+
+        return res.render('home',{
+
+            title:"Home",
+            post:posts
+        })
+     })
+    
 }
 
 module.exports.temp=function(req,res){

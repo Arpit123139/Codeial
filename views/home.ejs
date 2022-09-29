@@ -25,7 +25,20 @@
                     <TEXTArea name="content" cols="30" rows="3" placeholder="Type Here..."></TEXTArea>
                     <input type="submit" value="Post">
                 </form>
+
+                <div id="post-lidt-container">
+                    <ul>
+                        <%for (let i of post ){%>
+                            <li id="post">
+                                <p id="post-content"><%=i.content%></p>
+                                
+                            </li>
+                            
+                        <%}%>
+                    </ul>
+                </div>
             </section>
+            
         </main>
     <%- include('footer');%>
 
