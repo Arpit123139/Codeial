@@ -36,6 +36,12 @@
                                 <%for (let i of post ){%>
                                     <li id="post">
                                         <p>
+                                            <!--Use the .id instead of ._id in locals.user.id to convert it into String -->
+                                            <% if((locals.user) && (locals.user.id==i.user.id)){%>     <!--This is a check to ensure delte button is available when the user is sign in and only to that post which the user has created-->
+                                                <small>
+                                                    <a href="/posts/destroy/<%=i._id%>">X</a>
+                                                </small>
+                                            <%}%>
                                             <%=i.content%>
                                                 <br>
                                                 <small>

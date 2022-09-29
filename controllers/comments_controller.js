@@ -16,7 +16,7 @@ module.exports.create=function(req,res){
                 //updating adding the comment id to the post model
                 post.comments.push(comment);     // it will automatically push the comment id in the post.js module
                 post.save()
-
+                //after every update we must save it 
                 res.redirect('/')
             })
         }else{
