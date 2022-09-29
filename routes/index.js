@@ -15,4 +15,6 @@ router.get('/temp',homeController.temp)
 /**************************This line says that when the request come something like /users then send it to the neighbour users.js  We have to do this because index.js(main) refers to this file so this file must have a list of all other route */
 router.use('/users',require("./users"))
 router.use('/posts',require("./posts"))
+router.use('/comments',require("./comments"))
+
 module.exports=router

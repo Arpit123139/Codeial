@@ -42,6 +42,18 @@
                                                     <%=i.user.name%>
                                                 </small>
                                         </p>
+                                        <div class="post-comments">
+                                            <% if(locals.user){%>
+
+                                                <form action="/comments/create" method="Post">
+                                                    <input type="text" name="content" placeholder="Type Here to add comment">
+                                                    <input type="hidden" name="post" value="<%= i._id %>"> <!--we are passing the id of the post because we needed it in the controller and unlike user req.use._id we cannnot do directly for the post -->
+                                                    <input type="submit" value="Add Comment">
+                                                </form>
+                                            
+                                            <%}%>
+                                        </div>
+
                                     </li>
 
                                     <%}%>

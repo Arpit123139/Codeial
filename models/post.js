@@ -12,7 +12,7 @@ const postSchema =new mongoose.Schema({
         ref:'User'            //we have exported it in users.js
     },
     //include the array of Id of all comments  this is done to get all the comments associated with the post directly
-    comment:[
+    comments:[
         {
             type:mongoose.Schema.Types.ObjectId,
             ref:'Comment'
