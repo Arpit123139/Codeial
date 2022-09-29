@@ -31,12 +31,18 @@ module.exports.home=function(req,res){
          }
       })
      .exec(function(err,posts){
+        //sending the list of user
+        User.find({},function(err,user){
+            return res.render('home',{
 
-        return res.render('home',{
+                title:"Home",
+                post:posts,
+                all_user:user
+            })
 
-            title:"Home",
-            post:posts
         })
+
+        
      })
     
 }

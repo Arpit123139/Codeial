@@ -1,9 +1,16 @@
 const User = require('../models/users');
 
 module.exports.profile = function (req, res) {
-    return res.render('user_profile', {
-        title: 'User Profile'
+
+    
+    User.findById(req.params.id,function(err,user){
+        return res.render('user_profile', {
+            title: 'User Profile',
+            profile_user:user
+        })
+
     })
+   
 }
 
 
@@ -11,6 +18,7 @@ module.exports.profile = function (req, res) {
 module.exports.signUp = function (req, res) {
 
     if (req.isAuthenticated()) {
+       
         return res.redirect('/users/profile')
 
     }

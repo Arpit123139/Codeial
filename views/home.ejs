@@ -34,6 +34,7 @@
                         <div id="post-list-container">
                             <ul>
                                 <%for (let i of post ){%>
+
                                     <li id="post">
                                         <p>
                                             <!--Use the .id instead of ._id in locals.user.id to convert it into String -->
@@ -51,7 +52,7 @@
                                         </p>
                                         <div class="post-comments">
                                             <% if(locals.user){%>
-
+                                    
                                                 <form action="/comments/create" method="Post">
                                                     <input type="text" name="content"
                                                         placeholder="Type Here to add comment">
@@ -59,9 +60,9 @@
                                                     <!--we are passing the id of the post because we needed it in the controller and unlike user req.use._id we cannnot do directly for the post -->
                                                     <input type="submit" value="Add Comment">
                                                 </form>
-
+                                    
                                                 <%}%>
-
+                                    
                                                     <div class="post-comments-list">
                                                         <ul id="post-comments-<%=i._id%>">
                                                             <%for(comment of i.comments){%>
@@ -73,7 +74,7 @@
                                                                             <a href="/comments/destroy/<%=comment._id%>">X</a>
                                                                         </small>
                                                                     <%}%>
-
+                                    
                                                                     <%=comment.content%>
                                                                     <br>
                                                                         <small>
@@ -82,18 +83,29 @@
                                                                     <br>
                                                                     <br>
                                                                 </p>
-
+                                    
                                                             <%}%>
                                                         </ul>
                                                     </div>
                                         </div>
-
+                                    
                                     </li>
 
-                                    <%}%>
+                                <%}%>
                             </ul>
                         </div>
             </section>
+
+            <section id="user-friends">
+                <h4>Friends</h4>
+                <% for (u of all_user) {%>
+                    <p>
+                        <a href="users/profile/<%=u.id%>"><%=u.name%></a>
+                    </p>
+                
+                <%}%>
+            </section>
+
 
         </main>
         <%- include('footer');%>

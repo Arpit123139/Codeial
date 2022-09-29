@@ -5,7 +5,7 @@ const passport=require('passport')
 const usersController=require("../controllers/users_controller")
 
 // The profile page is only accessible when the user is authenticated 
-router.get("/profile",passport.checkAuthentication,usersController.profile) //this works when the url is /users/profile
+router.get("/profile/:id",passport.checkAuthentication,usersController.profile) //this works when the url is /users/profile
 
 router.get("/sign-up",usersController.signUp)
 router.get("/sign-in",usersController.signIn)
