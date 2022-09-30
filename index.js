@@ -17,6 +17,10 @@ const MongoStore = require('connect-mongo');
  //SAAS Middleware Its use is to convert the SAAS into normal css when the server starts 
  const saasMiddleware=require('node-sass-middleware')
 
+ //Setting up the flash
+ const flash=require('connect-flash')
+ const customMware=require('./config/middleware')
+
  // below the server start becuase we need a precompile version to css
  app.use(saasMiddleware({
     src:'./assets/scss',
@@ -64,6 +68,10 @@ app.use(passport.session())
 
 //pass the user data to the locals so that it can be access by the views
 app.use(passport.setAuthenticatedUser)
+
+//using Flash  we need to put it after the session has been used because it uses session-cookie
+app.use(flash())
+app.use(customMware.setFlash)
 /***********************use express router*************/
 app.use('/', require("./routes"))          // by doing this we are telling the app that all .get .post will be handle by this folder 
 

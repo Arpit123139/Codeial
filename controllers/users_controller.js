@@ -66,6 +66,8 @@ module.exports.create = function (req, res) {
 
 // sign in and create a session for the user
 module.exports.createSession = function (req, res) {
+
+    req.flash('Success','Logged in Successfully')
     return res.redirect('/');
 }
 
@@ -78,7 +80,11 @@ module.exports.destroySession = function (req, res) {
         }
        return res.redirect('/');
     });
-    res.redirect('/')
+    req.flash('Success','You have Logged Out')
+    // as we are posting the flash in req but we are returning the res
+
+    // to set the flash message from the req to res we are making middleware
+    res.redirect('/')         
 }
 
 module.exports.update=function(req,res){
