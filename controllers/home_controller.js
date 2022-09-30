@@ -18,7 +18,9 @@ module.exports.home = async function (req, res) {
 
 
     try {
-        let posts = await Post.find({}).populate('user')
+        let posts = await Post.find({})
+        .sort('-createdAt')      // THE post which was created earlier appear at the top and sorting occurs
+        .populate('user')
             .populate({
                 path: 'comments',
                 populate: {
