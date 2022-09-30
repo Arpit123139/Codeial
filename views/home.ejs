@@ -55,7 +55,7 @@
                                                 <div class="post-comments">
                                                     <% if(locals.user){%>
                                             
-                                                        <form action="/comments/create" method="Post">
+                                                        <form action="/comments/create" method="Post" class="">
                                                             <input type="text" name="content"
                                                                 placeholder="Type Here to add comment">
                                                             <input type="hidden" name="post" value="<%= i._id %>">
@@ -125,7 +125,7 @@
         <%- include('footer');%>
 
         <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>    <!--We are using ajax to submit the form manually using ajax so that the page does not refresh every timem -->
-        <script src="/js/home_post.js"></script>
+        <!-- <script src="/js/home_post.js"></script> -->
 
 
 </body>

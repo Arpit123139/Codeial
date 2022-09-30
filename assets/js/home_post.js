@@ -16,6 +16,7 @@
 
                     let newPost=newPostDom(data.data.post);
                     $('#post-list-container>ul').prepend(newPost)
+                    deletePost($(' .delete-post-button', newPost))             // attaching the button
 
                 },error:function(error){
                     console.log(error.responseText)
@@ -34,7 +35,7 @@
             
                 
                 <small>
-                    <a class="delete-post-button" href="/posts/destroy/${post.id}">X</a>
+                    <a class="delete-post-button" href="/posts/destroy/${post._id}">X</a>
                 </small>
                 
                     ${post.content}
@@ -65,6 +66,29 @@
     
     </li>`)
 
+    }
+
+
+    //method to delete a post from dom
+
+    let deletePost=function(deleteLink)
+    {
+        $(deleteLink).click(function(e){
+            e.preventDefault();
+
+            $.ajax({
+                type:'get',
+                url:$(deleteLink).prop('href'),    // getting the value of href from a tag
+                success:function(data){
+
+                    $(`#post-${data.data.post_id}`).remove()
+
+                },error:function(err){
+                    console.log(error.responseText)
+                
+                }
+            })
+        })
     }
 
 

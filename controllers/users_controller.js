@@ -1,4 +1,7 @@
 const User = require('../models/users');
+const fs=require('fs')
+const path=require('path')
+
 
 module.exports.profile = function (req, res) {
 
@@ -87,20 +90,58 @@ module.exports.destroySession = function (req, res) {
     res.redirect('/')         
 }
 
-module.exports.update=function(req,res){
+module.exports.update=async function(req,res){
 
     
     //this is an authentication check so the user can update his own profile only
+    // if(req.user.id==req.params.id)
+    // {
+        
+    //     User.findByIdAndUpdate(req.params.id,{
+    //         name:req.body.name,
+    //         email:req.body.email
+    //     },function(err,user){
+    //         return res.redirect('back')
+    //     })
+    // }else{
+    //     return res.status(401).send('Unauthorized')
+    // }
     if(req.user.id==req.params.id)
     {
-        
-        User.findByIdAndUpdate(req.params.id,{
-            name:req.body.name,
-            email:req.body.email
-        },function(err,user){
-            return res.redirect('back')
-        })
+        try {
+            let user=await User.findById(req.params.id)
+            User.uploadedAvatar(req,res,function(err){
+                if(err){
+                    console.log("******multer Error:",err)
+                }
+                else{
+                    console.log(req.file)
+
+                    //the req.body is not available withouth multer because form is of enctype=multifile
+                    user.name=req.body.name
+                    user.email=req.body.email
+
+                    if(req.file){
+
+                        if(user.avatar){
+
+                        }
+                        //this is  saving the path of the uploaded file into the avatar field in the user
+                        user.avatar=User.avatarPath+'/'+req.file.filename
+                    }
+                    user.save();
+                    return res.redirect('back')
+                }
+            })
+            
+        } catch (err) {
+            console.log('error',err)
+        }
+
     }else{
         return res.status(401).send('Unauthorized')
     }
+
+
+
 }

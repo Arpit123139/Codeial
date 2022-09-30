@@ -39,6 +39,8 @@ app.use(express.urlencoded())
 app.use(cookieParser())
 /*****************************Middle Ware for Static Files  */
 app.use(express.static('assets'))
+// for the image
+app.use('/uploads',express.static(__dirname+'/uploads'))
 
 
 

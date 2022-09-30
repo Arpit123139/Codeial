@@ -1,2 +1,4 @@
 body {
   background-color: wheat; }
+  body img {
+    padding: 10px; }
