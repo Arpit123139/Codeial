@@ -22,7 +22,7 @@
         <main>
             <h1>User Details</h1>
             
-            <img src="<%= user.avatar%>" alt="<%=user.name%>" width="199px" height="199px"><!--This will not work as ./upload folder or path path is not available to the browser  -->
+            <img src="<%= profile_user.avatar%>" alt="<%=profile_user.name%>" width="199px" height="199px"><!--This will not work as ./upload folder or path path is not available to the browser  -->
 
             <%if(user.id==profile_user.id){%>
                 <!--if user matches then show the form-->
@@ -35,6 +35,7 @@
             
             <%}else{%>
                 <!--else show only the profile info-->
+
                 <p><%=profile_user.name%></p>
                 <p><%=profile_user.email%></p>
 

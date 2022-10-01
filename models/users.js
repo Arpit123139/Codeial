@@ -27,6 +27,7 @@ const userSchema=new mongoose.Schema({
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
+        //this is where the avatar get stored
       cb(null, path.join(__dirname,'..',AVATAR_PATH))     // __dirname gives the user.js the corrent directory
     },
     filename: function (req, file, cb) {

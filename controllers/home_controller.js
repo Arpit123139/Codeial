@@ -29,6 +29,7 @@ module.exports.home = async function (req, res) {
             })
 
         //sending the list of user and wait for this process to complete as it is await and then move forward
+        //this is send to display the list of friends
         let user = await User.find({});
 
         return res.render('home', {
