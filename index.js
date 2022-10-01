@@ -8,6 +8,8 @@ const port = 8000
 const session = require('express-session')
 const passport = require('passport')
 const passportLocal = require('./config/passport-local-startegy');             // this is require for express-session np need of logics
+const passportjwt = require('./config/passport-jwt-strategy');        // this is require for express-session np need of logics
+
 const { options } = require('./routes');
 
 //for storing the session key in mongo
