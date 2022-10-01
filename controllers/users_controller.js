@@ -123,7 +123,9 @@ module.exports.update=async function(req,res){
 
                     if(req.file){
 
+                        //deleting a file if the user has already associated with a avatar if the user has a associated avatar already then we delte it and update a new One
                         if(user.avatar){
+                            fs.unlinkSync(path.join(__dirname,'..',user.avatar))
 
                         }
                         //this is  saving the path of the uploaded file into the avatar field in the user

@@ -1,7 +1,9 @@
 const Post=require('../../../models/post')
 const Comment=require('../../../models/comment')
+const User=require('../../../models/users')
 
 module.exports.index=async function(req,res){
+    let user=User.find({})
 
     
     let posts = await Post.find({})

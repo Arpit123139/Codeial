@@ -1,6 +1,7 @@
 const User=require('../../../models/users')
 const jwt=require('jsonwebtoken')
 
+// creating a jwt token 
 module.exports.createSession=async function(req,res){
 
     try {
@@ -14,6 +15,7 @@ module.exports.createSession=async function(req,res){
         }
 
         
+        //Creating the jwt token......................
         return res.json(200,{
             message:"Sign In successfull here is ypur token plz keep it safe",
             data:{
