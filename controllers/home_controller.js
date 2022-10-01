@@ -1,6 +1,7 @@
 
 const Post = require('../models/post')
 const User = require('../models/users')
+const Friends=require('../models/friendship')
 
 // telling that the function is of type async it contains sone asynchronus task
 
@@ -31,12 +32,22 @@ module.exports.home = async function (req, res) {
         //sending the list of user and wait for this process to complete as it is await and then move forward
         //this is send to display the list of friends
         let user = await User.find({});
+        let findFriend;
+        if(req.user){
+            let user2=await User.findById(req.user._id)
+             findFriends=await Friends.find({
+                from_user:req.user._id
+            }).populate('to_user')
+            
+            console.log(findFriends)
+        }
 
         return res.render('home', {
 
             title: "Home",
             post: posts,
-            all_user: user
+            all_user: user,
+            friend:findFriends
         })
     } catch (err) {
         console.log('Error',err)
