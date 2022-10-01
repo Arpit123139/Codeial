@@ -1,5 +1,6 @@
 const Comment=require('../models/comment')
 const Post=require('../models/post')
+const Like=require('../models/like')
 const { post } = require('../routes')
 
 const commentMailer=require('../mailers/comments_mailer')
@@ -40,6 +41,13 @@ module.exports.destroy=function(req,res){
         {
             let postId=comment.post;
             comment.remove()
+            Like.deleteMany({likeable:req.params.id},function(err){
+                if(err){
+                    console.lof("Not able to delete the this Comment from likes")
+                    return
+                }
+            })
+
 
             //deleting the id of comment and update
             Post.findByIdAndUpdate(postId,{$pull :{comments:req.params.id}},function(err,post){         //this is a inbuilt function grom the comments array of the post just pull out the comment of a particualar id

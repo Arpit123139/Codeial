@@ -45,12 +45,19 @@
                                                         <small>
                                                             <a class="delete-post-button" href="/posts/destroy/<%=i._id%>">X</a>
                                                         </small>
-                                                        <%}%>
-                                                            <%=i.content%>
-                                                                <br>
-                                                                <small>
-                                                                    <%=i.user.name%>
-                                                                </small>
+                                                    <%}%>
+                                                    <%=i.content%>
+                                                    <br>
+                                                    <small>
+                                                        <%=i.user.name%>
+                                                    </small>
+                                                    <br>
+
+                                                    <%if(locals.user) {%>
+                                                        <a href="/likes/toggle/?id=<%= i._id %>&type=Post"><%=i.likes.length%> Likes</a>
+                                                    <%}else{%>
+                                                        <%=i.likes.length%> Likes
+                                                    <%}%>
                                                 </p>
                                                 <div class="post-comments">
                                                     <% if(locals.user){%>
@@ -83,6 +90,11 @@
                                                                                  <%=comment.user.name%>
                                                                                 </small>
                                                                             <br>
+                                                                            <%if(locals.user) {%>
+                                                                                <a href="/likes/toggle/?id=<%= comment._id %>&type=Comment"><%=comment.likes.length%> Likes</a>
+                                                                            <%}else{%>
+                                                                                <%=comment.likes.length%> Likes
+                                                                            <%}%>
                                                                             <br>
                                                                         </p>
                                             
