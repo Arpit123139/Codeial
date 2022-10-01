@@ -2,30 +2,34 @@ const Comment=require('../models/comment')
 const Post=require('../models/post')
 const { post } = require('../routes')
 
-module.exports.create=function(req,res){
+const commentMailer=require('../mailers/comments_mailer')
+
+module.exports.create=async function(req,res){
 
     //first we find that the comment is made on available post or not
-    Post.findById(req.body.post,function(err,post){
+       let post=await Post.findById(req.body.post)
 
         if(post){
-            Comment.create({
+           let comment= await Comment.create({
                 content:req.body.content,
                 post:req.body.post,
                 user:req.user._id
-            },function(err,comment){
+            })
 
                 //updating adding the comment id to the post model
                 post.comments.push(comment);     // it will automatically push the comment id in the post.js module
                 post.save()
-                //after every update we must save it 
+                //after every update we must save it
+                 comment=await comment.populate('user','name email')
+                 commentMailer.newComment(comment)
                 res.redirect('/')
-            })
+            
         }else{
             console.log("Post does not exsist")
         }
-    })
+    }
 
-}
+
 
 //I have to remove the contents from two position one from the comment other from  the comments array in post
 module.exports.destroy=function(req,res){
