@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="/css/header.css">
     <link rel="stylesheet" href="/css/footer.css">
     <link rel="stylesheet" href="/css/home.css">
+    <link rel="stylesheet" href="/css/chat_box.css">
 
 
 </head>
@@ -113,22 +114,24 @@
                     
                 </div>
                 <div id="user-friends">
-                    <section >
-                        <h4>All the Users </h4>
-                        <% for (u of all_user) {%>
-                            <p>
-                                <a href="users/profile/<%=u.id%>"><%=u.name%></a>
-                            </p>
-                        
-                        <%}%>
-                    </section>
+                    
                     <% if(locals.user){%>
                         <section >
 
                             <h4>Friends of <%=locals.user.name%></h4>
                             <% for (u of friend ) {%>
                                 <p>
-                                    <h5><%=u.to_user.name%></h5>
+                                    <a href="users/profile/<%=u.to_user._id%>"><%=u.to_user.name%></a>
+                                </p>
+                            
+                            <%}%>
+                        </section>
+                    <%}else{%>
+                        <section >
+                            <h4>All the Users </h4>
+                            <% for (u of all_user) {%>
+                                <p>
+                                    <a href="users/profile/<%=u.id%>"><%=u.name%></a>
                                 </p>
                             
                             <%}%>
@@ -137,9 +140,28 @@
 
     
                 </div>
+               
+
 
 
             </div>
+            <% if(locals.user){%>
+                <div id="user-chat-box">
+                    <ul id="chat-messages-list">
+                        <li class="other-message">
+                            <span>Other Message</span>
+                        </li>
+                        <li class="self-message">
+                            <span>Self Messge</span>
+                        </li>
+
+                    </ul>
+                    <div id="chat-message-input-container">
+                        <input id="chat-message-input" placeholder="Type Message Here">
+                        <button id="send-message">Send</button>
+                    </div>
+                </div>
+            <%}%>
 
            
             
@@ -149,8 +171,22 @@
 
         <%- include('footer');%>
 
+
         <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>    <!--We are using ajax to submit the form manually using ajax so that the page does not refresh every timem -->
+
+         
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.5.2/socket.io.js" integrity="sha512-VJ6+sp2E5rFQk05caiXXzQd1wBABpjEj1r5kMiLmGAAgwPItw1YpqsCCBtq8Yr1x6C49/mTpRdXtq8O2RcZhlQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="/js/chat_engine.js"></script>
+
+        <% if(locals.user){%>
+            <script>
+                new ChatEngine('user-chat-box','<%=locals.user._id%>')
+            </script>
+        <%}%>
+
+
         <!-- <script src="/js/home_post.js"></script> -->
+       
 
 
 </body>

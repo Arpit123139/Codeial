@@ -35,11 +35,11 @@ module.exports.home = async function (req, res) {
         let findFriend;
         if(req.user){
             let user2=await User.findById(req.user._id)
-             findFriends=await Friends.find({
+             findFriend=await Friends.find({
                 from_user:req.user._id
             }).populate('to_user')
             
-            console.log(findFriends)
+            console.log(findFriend)
         }
 
         return res.render('home', {
@@ -47,7 +47,7 @@ module.exports.home = async function (req, res) {
             title: "Home",
             post: posts,
             all_user: user,
-            friend:findFriends
+            friend:findFriend
         })
     } catch (err) {
         console.log('Error',err)

@@ -25,6 +25,12 @@ const MongoStore = require('connect-mongo');
  const flash=require('connect-flash')
  const customMware=require('./config/middleware')
 
+ //socket.io  Set up the chat Server to be used with socket.io
+ const chatServer=require('https').createServer(app)
+ const ChatSockets=require('./config/chat_socket').chatSockets(chatServer)        // we must pass chatServer to it 
+ chatServer.listen(5000)
+ console.log("Chat server is listening on port 5000")
+
  // below the server start becuase we need a precompile version to css
  app.use(saasMiddleware({
     src:'./assets/scss',
